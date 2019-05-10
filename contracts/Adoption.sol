@@ -3,11 +3,11 @@ pragma experimental ABIEncoderV2;
 
 contract Adoption {
 
-  address[] public adopters;
+  address[] adopters;
 
   struct Parents {
-      uint parent1;
-      uint parent2;
+    uint parent1;
+    uint parent2;
   }
 
   Parents[] public childToParents;
@@ -15,6 +15,12 @@ contract Adoption {
   uint[] adoptionTime;
   uint public petNumber = 16;
 
+  constructor() public {
+    for (uint i=0;i<petNumber;i++){
+      adopters.push(address(0));
+      adoptionTime.push(0);
+    }
+  }
   // Adopting a pet
   function adopt(uint petId) public returns (uint) {
     require(petId >= 0 && petId <= (petNumber - 1));
