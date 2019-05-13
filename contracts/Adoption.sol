@@ -69,8 +69,13 @@ contract Adoption {
         return (names,urls,locations,breeds);
 
     }
+    function getNames()  public view returns (string[] memory){
+        return names;
+    }
 
-    // Retrieving the adopters
+
+
+        // Retrieving the adopters
     function getParents(uint petId) public view returns (uint[2] memory) {
         require(petId >= 0 && petId <= (petNumber - 1));
         uint[2] memory res;
