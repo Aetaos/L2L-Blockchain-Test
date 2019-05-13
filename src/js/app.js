@@ -32,12 +32,12 @@ App = {
                 var petsRow = $('#petsRow');
                 var petTemplate = $('#petTemplate');
 
-                for (var i = 0; i < data[0].length; i++) {
-                    petTemplate.find('.panel-title').text(data[0][i]);//.name);
-                    petTemplate.find('img').attr('src', data[1][i]);//.picture);
-                    petTemplate.find('.pet-breed').text(data[3][i]);//.breed);
+                for (var i = 0; i < data.length/4; i++) {
+                    petTemplate.find('.panel-title').text(data[4*i+1]);//.name);
+                    petTemplate.find('img').attr('src', data[4*i+2]);//.picture);
+                    petTemplate.find('.pet-breed').text(data[4*i+4]);//.breed);
                     petTemplate.find('.pet-age').text(1);
-                    petTemplate.find('.pet-location').text(data[2]);//.location);
+                    petTemplate.find('.pet-location').text(data[4*i+3]);//.location);
                     petTemplate.find('.btn-adopt').attr('data-id', i);
 
                     petsRow.append(petTemplate.html());

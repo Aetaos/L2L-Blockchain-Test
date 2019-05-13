@@ -4,10 +4,7 @@ pragma experimental ABIEncoderV2;
 contract Adoption {
 
     address[] public adopters;
-    string[] public names;
-    string[] public urls;
-    string[] public locations;
-    string[] public breeds;
+    string[] public pets;
 
     struct Parents {
         uint parent1;
@@ -28,10 +25,10 @@ contract Adoption {
             adopters.push(address(0));
             adoptionTime.push(0);
             childToParents.push(Parents(0,0));
-            urls.push(url[i]);
-            names.push(name[i]);
-            locations.push(location[i]);
-            breeds.push(breed[i]);
+            pets.push(name[i]);
+            pets.push(url[i]);
+            pets.push(location[i]);
+            pets.push(breed[i]);
         }
     }
 
@@ -56,6 +53,10 @@ contract Adoption {
         petNumber = petNumber + 1;
         adopters.push(msg.sender);
         childToParents.push( Parents(petId_1, petId_2));
+        pets.push("Bobby");
+        pets.push("images/scottish-terrier.jpeg");
+        pets.push("Paris");
+        pets.push("Scottish-terrier");
 
         return petNumber-1;
     }
@@ -65,17 +66,11 @@ contract Adoption {
         return adopters;
     }
 
-    function getPets()  public view returns (string[] memory,string[] memory,string[] memory,string[] memory){
-        return (names,urls,locations,breeds);
-
-    }
-    function getNames()  public view returns (string[] memory){
-        return names;
+    function getPets()  public view returns (string[] memory) {
+        return pets;
     }
 
-
-
-        // Retrieving the adopters
+        // Retrieving the relatives
     function getParents(uint petId) public view returns (uint[2] memory) {
         require(petId >= 0 && petId <= (petNumber - 1));
         uint[2] memory res;
